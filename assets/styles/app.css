@@ -1,0 +1,26 @@
+body {
+    background-color: white;
+}
+
+.green{
+    background-color: #09b468;
+}
+
+
+.greenColor{
+    color: #09b468;
+    
+}
+
+.colorWhite {
+    color: white;
+}
+
+.greenbuttoncontour {
+    border-color: #09b468;
+    color: #09b468;
+  }
+
+.hover:hover{
+    color: rgb(0, 0, 0);
+}
