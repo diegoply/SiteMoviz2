@@ -7,7 +7,7 @@
 {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{ movie.name }}</h5>
-    <a href="#" class="btn btn-primary green hover2 colorWhite">Voir la Fiche</a>
+    <a href="{{ path('app_show_movie', {'id': movie.id } )}}" class="btn btn-primary green hover2 colorWhite">Voir la Fiche</a>
   </div>
 </div>
 </div>
