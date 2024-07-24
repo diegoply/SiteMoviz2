@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Director;
 use App\Entity\Genre;
 use App\Entity\Movie;
+use App\Entity\Review;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -47,6 +49,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Genre', 'fas fa-list', Genre::class);
         yield MenuItem::linkToCrud('Réalisateurs', 'fa-solid fa-clapperboard', Director::class);
         yield MenuItem::linkToCrud('Film', 'fas fa-film', Movie::class);
-        
+        yield MenuItem::linkToCrud('Critiques', 'fa-solid fa-star', Review::class);
+        yield MenuItem::linkToCrud('Utilisateur', 'fa-solid fa-users', User::class);
+
     }
 }
