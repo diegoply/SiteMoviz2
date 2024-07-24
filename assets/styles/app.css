@@ -24,3 +24,8 @@ body {
 .hover:hover{
     color: rgb(0, 0, 0);
 }
+
+.hover2:hover{
+    color: rgb(0, 0, 0);
+    background-color: #09b468;
+}
