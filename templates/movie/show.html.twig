@@ -3,7 +3,59 @@
 {% block title %}Titre du Films{% endblock %}
 
 {% block body %}
+<h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ movie.name }}</h1>
+<div class="row">
+  <div class="col">
+      <h2>Date de sortie: </h2>
+      {% if movie.releaseDate %}
+      <h2>{{ movie.releaseDate.format("d/m/Y") }}</h2>
+      {% else %}
+    <h2>N/C</h2>
+      {% endif %}
+  </div>
 
+  <div class="col">
+      <h2>Durée: </h2>
+      {% if movie.duration %}
+      <h2>{{ movie.duration.format("H") }}h{{ movie.duration.format("i") }}</h2>
+      {% else %}
+    <h2>N/C</h2>
+      {% endif %}
+  </div>
+
+  <div class="col" >
+    <h2>Genres</h2>
+      {% for genre in movie.genres %}
+          <a href="{{ path('app_movies', {'genreId': genre.id} ) }}">{{ genre.name }}</a>
+      {% endfor %}
+  </div>
+
+  <div class="col" >
+    <h2>Réalisateurs</h2>
+      {% for director in movie.directors %}
+          <a href="">{{ director.firstName }} {{ director.lastName }}</a>
+      {% endfor %}
+  </div>
+
+  <div class="row">
+      <div class="col">
+      <h>Note moyenne:<h>
+        {% if averageRate %}
+        
+            {% for i in range(5 ,1, -1) %}
+                <input disabled="disabled" type="radio" id="{{ i }}" name="avgrate" value="{{ i }}" {{ averageRate == i ? 'checked="checked"' : ''}}/>
+                <label for="{{ i }}" title="{{ i }}">{{ i }}</label>
+            {% endfor %}
+        {% else %}
+          <p>Il n'y a pas encore de note</p>
+            
+        {% endif %}
+
+      </div>
+  </div>
+
+
+</div>
     <div class="row flex-lg-row-reverse  g-5 py-5">
       <div class="col-10 col-sm-8 col-lg-4 ">
         {% if movie.imageName %}
@@ -13,13 +65,19 @@
         {% endif %}
       </div>
       <div class="col-lg-8">
-        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ movie.name }}</h1>
-        <p class="lead mt-5">{{ movie.synopsis |raw }}</p>
+        
+        <p class="lead mt-5">{{ movie.synopsis|raw }}</p>
       </div>
     </div>
 
     <div class="row">
+    <h1>Noter ce film</h1>
+    {% if user %}
         {{ include ('partials/review/_form.html.twig') }}
+    {% else %}
+      <p>Vous devez être connecté pour pouvoir noter ce film. Rendez-vous sur la page</p>
+          <a href="{{ path('app_login') }}">Connexion</a>
+    {% endif %}
     </div>
   
 
