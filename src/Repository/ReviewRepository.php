@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Review;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,17 +20,24 @@ class ReviewRepository extends ServiceEntityRepository
     //    /**
     //     * @return Review[] Returns an array of Review objects
     //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+       public function getAverageRateForMovieId($movieId): float
+       {
+
+        try{
+           $result =  $this->createQueryBuilder('r')
+           ->select('AVG(r.rate) as averageRate')
+                ->Where('r.movie = :movieId')
+               ->setParameter('movieId', $movieId)
+                ->getQuery()
+                ->getSingleScalarResult();
+
+            return $result !== null ? (float) $result : 0.0;
+            
+
+         } catch (NoResultException $e){
+            return 0.0;
+         }
+        }
 
     //    public function findOneBySomeField($value): ?Review
     //    {

@@ -1,0 +1,17 @@
+<div class="col-md-4 my-2 d-flex ">
+<div class="card" style="width: 18rem;">
+{% if movie.imageName %}
+  <img src="{{ vich_uploader_asset(movie, 'imageFile') }}" class="card-img-top" style="width:100%"  alt="affiche {{ movie.name }}">
+{% else %}
+  <img src="{{ asset('images/defaultMovie.jpg') }}" class="card-img-top" style="width:100%" alt="affiche par défault">
+{% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{ movie.name }}</h5>
+    <a href="{{ path('app_show_movie', {'id': movie.id } )}}" class="btn btn-primary green hover2 colorWhite">Voir la Fiche</a>
+  </div>
+</div>
+</div>
+
+      
+
+ 

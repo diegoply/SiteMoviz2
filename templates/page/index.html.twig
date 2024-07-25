@@ -17,5 +17,14 @@
         </div>
       </div>
     </div>
-  
+  <h2>Les derniers films ajoutés</h2>
+    <div class="row mt-5 text-center ">
+        {% for movie in movies %}
+         
+             {% include "partials/movie_block.html.twig" %}
+
+        {% endfor %}
+    </div>
+
+
 {% endblock %}
